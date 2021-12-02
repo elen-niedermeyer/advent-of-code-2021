@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="PuzzleTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-12-02T09:00:15" hostname="elen-desktop" time="0.04">
+  <properties/>
+  <testcase name="testPuzzle01()" classname="PuzzleTest" time="0.04"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
