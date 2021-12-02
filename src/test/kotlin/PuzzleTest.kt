@@ -14,4 +14,23 @@ class PuzzleTest {
         val resultWindows = puzzleSolver.countWindowIncreasements(exampleInput)
         assertEquals(5, resultWindows)
     }
+
+    @Test
+    fun testPuzzle02() {
+        val exampleInput = arrayOf(
+            Puzzle02Element("forward", 5),
+            Puzzle02Element("down", 5),
+            Puzzle02Element("forward", 8),
+            Puzzle02Element("up", 3),
+            Puzzle02Element("down", 8),
+            Puzzle02Element("forward", 2)
+        )
+        val puzzleSolver = Puzzle02()
+
+        val result = puzzleSolver.getPositionProduct(exampleInput)
+        assertEquals(150, result)
+
+        val resultAim = puzzleSolver.getAimPositionProduct(exampleInput)
+        assertEquals(900, resultAim)
+    }
 }

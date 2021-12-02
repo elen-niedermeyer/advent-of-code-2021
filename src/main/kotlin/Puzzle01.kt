@@ -1,7 +1,9 @@
+import org.apache.commons.csv.CSVFormat
+
 class Puzzle01 {
 
     fun solvePuzzle(): Int? {
-        val records = readInput("puzzle01.csv")
+        val records = readInput("puzzle01.csv", CSVFormat.DEFAULT)
         val input = records?.let { IntArray(it.size) { i -> it[i].get(0).toInt() } }
         return input?.let { countWindowIncreasements(it) }
     }
