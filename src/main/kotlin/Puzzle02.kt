@@ -4,24 +4,24 @@ class Puzzle02 {
 
     fun solvePuzzle(): Int? {
         val records = readInput("puzzle02.csv", CSVFormat.newFormat(' '))
-        val input = records?.let { Array(it.size) { i -> Puzzle02Element(it[i].get(0), it[i].get(1).toInt()) } }
+        val input = records?.let { Array(it.size) { i -> Pair(it[i].get(0), it[i].get(1).toInt()) } }
         return input?.let { getAimPositionProduct(it) }
     }
 
-    fun getPositionProduct(input: Array<Puzzle02Element>): Int {
+    fun getPositionProduct(input: Array<Pair<String, Int>>): Int {
         var horizontal = 0
         var depth = 0
 
         for (elem in input) {
-            when (elem.direction) {
+            when (elem.first) {
                 "forward" -> {
-                    horizontal += elem.steps
+                    horizontal += elem.second
                 }
                 "down" -> {
-                    depth += elem.steps
+                    depth += elem.second
                 }
                 "up" -> {
-                    depth -= elem.steps
+                    depth -= elem.second
                 }
             }
         }
@@ -29,22 +29,22 @@ class Puzzle02 {
         return horizontal * depth
     }
 
-    fun getAimPositionProduct(input: Array<Puzzle02Element>): Int {
+    fun getAimPositionProduct(input: Array<Pair<String, Int>>): Int {
         var horizontal = 0
         var depth = 0
         var aim = 0
 
         for (elem in input) {
-            when (elem.direction) {
+            when (elem.first) {
                 "forward" -> {
-                    horizontal += elem.steps
-                    depth += elem.steps * aim
+                    horizontal += elem.second
+                    depth += elem.second * aim
                 }
                 "down" -> {
-                    aim += elem.steps
+                    aim += elem.second
                 }
                 "up" -> {
-                    aim -= elem.steps
+                    aim -= elem.second
                 }
             }
         }
