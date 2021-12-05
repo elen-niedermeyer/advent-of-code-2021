@@ -3,7 +3,7 @@ import org.apache.commons.csv.CSVFormat
 class Puzzle03 {
 
     fun solvePuzzle(): String? {
-        val records = readInput("puzzle03.csv", CSVFormat.DEFAULT)
+        val records = readCsv("puzzle03.csv", CSVFormat.DEFAULT)
         val input = records?.let { List(it.size) { i -> it[i].get(0) } }
         return input?.let {
             "Power Consumption: " + getPowerConsumption(it) + "; Life Support Rating: " + getLifeSupportingRate(

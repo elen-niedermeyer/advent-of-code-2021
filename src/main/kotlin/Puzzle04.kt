@@ -3,11 +3,11 @@ import org.apache.commons.csv.CSVFormat
 class Puzzle04 {
 
     fun solvePuzzle(): String? {
-        val numberRecords = readInput("puzzle04numbers.csv", CSVFormat.DEFAULT)
+        val numberRecords = readCsv("puzzle04numbers.csv", CSVFormat.DEFAULT)
         val numbers = numberRecords?.let { IntArray(it[0].size()) { i -> it[0].get(i).toInt() } }
 
         val boards = mutableListOf<Puzzle04Board>()
-        val boardRecords = readInput("puzzle04boards.csv", CSVFormat.newFormat(' '))
+        val boardRecords = readCsv("puzzle04boards.csv", CSVFormat.newFormat(' '))
         if (boardRecords != null) {
             var boardNumbers = mutableListOf<Int>()
             var rowLength = 0

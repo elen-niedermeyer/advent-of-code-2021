@@ -102,6 +102,28 @@ class PuzzleTest {
 
         val losingResult = puzzleSolver.getLastWinningBoard(exampleNumbers, exampleBoards)
         assertEquals(1924, losingResult)
+    }
 
+    @Test
+    fun testPuzzle05() {
+        val exampleInput = mutableListOf(
+            intArrayOf(0, 9, 5, 9),
+            intArrayOf(8, 0, 0, 8),
+            intArrayOf(9, 4, 3, 4),
+            intArrayOf(2, 2, 2, 1),
+            intArrayOf(7, 0, 7, 4),
+            intArrayOf(6, 4, 2, 0),
+            intArrayOf(0, 9, 2, 9),
+            intArrayOf(3, 4, 1, 4),
+            intArrayOf(0, 0, 8, 8),
+            intArrayOf(5, 5, 8, 2)
+        )
+        val puzzleSolver = Puzzle05()
+
+        val result = puzzleSolver.getHorizontalAndVerticalOverlappingPoints(exampleInput)
+        assertEquals(5, result)
+
+        val resultAll = puzzleSolver.getAllOverlappingPoints(exampleInput)
+        assertEquals(12, resultAll)
     }
 }
