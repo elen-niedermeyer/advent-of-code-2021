@@ -126,4 +126,18 @@ class PuzzleTest {
         val resultAll = puzzleSolver.getAllOverlappingPoints(exampleInput)
         assertEquals(12, resultAll)
     }
+
+    @Test
+    fun testPuzzle06() {
+        val exampleInput = listOf(
+            3, 4, 3, 1, 2
+        )
+        val puzzleSolver = Puzzle06()
+
+        val result = puzzleSolver.getNumberOfFishes(exampleInput, 80)
+        assertEquals(5934, result)
+
+        val result2 = puzzleSolver.getNumberOfFishes(exampleInput, 256)
+        assertEquals(26984457539, result2)
+    }
 }
