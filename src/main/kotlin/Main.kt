@@ -12,6 +12,7 @@ fun main(args: Array<String>) {
     println("Puzzle 04: " + Puzzle04().solvePuzzle())
     println("Puzzle 05: " + Puzzle05().solvePuzzle())
     println("Puzzle 06: " + Puzzle06().solvePuzzle())
+    println("Puzzle 07: " + Puzzle07().solvePuzzle())
 }
 
 fun readCsv(fileName: String, csvFormat: CSVFormat): MutableList<CSVRecord>? {

@@ -140,4 +140,19 @@ class PuzzleTest {
         val result2 = puzzleSolver.getNumberOfFishes(exampleInput, 256)
         assertEquals(26984457539, result2)
     }
+
+    @Test
+    fun testPuzzle07() {
+        val exampleInput = intArrayOf(
+            16, 1, 2, 0, 4, 2, 7, 1, 2, 14
+        )
+        val puzzleSolver = Puzzle07()
+
+        val result1 = puzzleSolver.getMinimumConstantFuelUsage(exampleInput)
+        assertEquals(37, result1)
+
+        val result2 = puzzleSolver.getMinimumIncreasingFuelUsage(exampleInput)
+        assertEquals(168, result2)
+    }
+
 }
