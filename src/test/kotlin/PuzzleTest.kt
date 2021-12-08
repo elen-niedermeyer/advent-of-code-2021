@@ -155,4 +155,40 @@ class PuzzleTest {
         assertEquals(168, result2)
     }
 
+    @Test
+    fun testPuzzle08() {
+        val exampleSegmentOutput = listOf(
+            listOf("fdgacbe", "cefdb", "cefbgd", "gcbe"),
+            listOf("fcgedb", "cgb", "dgebacf", "gc"),
+            listOf("cg", "cg", "fdcagb", "cbg"),
+            listOf("efabcd", "cedba", "gadfec", "cb"),
+            listOf("gecf", "egdcabf", "bgf", "bfgea"),
+            listOf("gebdcfa", "ecba", "ca", "fadegcb"),
+            listOf("cefg", "dcbef", "fcge", "gbcadfe"),
+            listOf("ed", "bcgafe", "cdgba", "cbgef"),
+            listOf("gbdfcae", "bgc", "cg", "cgb"),
+            listOf("fgae", "cfgab", "fg", "bagce"),
+        )
+        val exampleSignals = listOf(
+            listOf("be", "cfbegad", "cbdgef", "fgaecd", "cgeb", "fdcge", "agebfd", "fecdb", "fabcd", "edb"),
+            listOf("edbfga", "begcd", "cbg", "gc", "gcadebf", "fbgde", "acbgfd", "abcde", "gfcbed", "gfec"),
+            listOf("fgaebd", "cg", "bdaec", "gdafb", "agbcfd", "gdcbef", "bgcad", "gfac", "gcb", "cdgabef"),
+            listOf("fbegcd", "cbd", "adcefb", "dageb", "afcb", "bc", "aefdc", "ecdab", "fgdeca", "fcdbega"),
+            listOf("aecbfdg", "fbg", "gf", "bafeg", "dbefa", "fcge", "gcbea", "fcaegb", "dgceab", "fcbdga"),
+            listOf("fgeab", "ca", "afcebg", "bdacfeg", "cfaedg", "gcfdb", "baec", "bfadeg", "bafgc", "acf"),
+            listOf("dbcfg", "fgd", "bdegcaf", "fgec", "aegbdf", "ecdfab", "fbedc", "dacgb", "gdcebf", "gf"),
+            listOf("bdfegc", "cbegaf", "gecbf", "dfcage", "bdacg", "ed", "bedf", "ced", "adcbefg", "gebcd"),
+            listOf("egadfb", "cdbfeg", "cegd", "fecab", "cgb", "gbdefca", "cg", "fgcdab", "egfdb", "bfceg"),
+            listOf("gcafb", "gcf", "dcaebfg", "ecagb", "gf", "abcdeg", "gaef", "cafbge", "fdbac", "fegbdc")
+        )
+        val puzzleSolver = Puzzle08()
+
+        val result1 = puzzleSolver.countUniqueSequentNumbers(exampleSegmentOutput)
+        assertEquals(26, result1)
+
+        val result2 = puzzleSolver.decodeOutputValues(exampleSignals, exampleSegmentOutput)
+        assertEquals(61229, result2)
+
+    }
+
 }
