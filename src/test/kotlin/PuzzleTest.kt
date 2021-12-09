@@ -192,12 +192,26 @@ class PuzzleTest {
 
     @Test
     fun testPuzzle09() {
-        val exampleInput = arrayOf(
-            intArrayOf(2, 1, 9, 9, 9, 4, 3, 2, 1, 0),
-            intArrayOf(3, 9, 8, 7, 8, 9, 4, 9, 2, 1),
-            intArrayOf(9, 8, 5, 6, 7, 8, 9, 8, 9, 2),
-            intArrayOf(8, 7, 6, 7, 8, 9, 6, 7, 8, 9),
-            intArrayOf(9, 8, 9, 9, 9, 6, 5, 6, 7, 8)
+        val exampleInput = listOf(
+            Puzzle09Point(0, 0, 2), Puzzle09Point(0, 1, 1), Puzzle09Point(0, 2, 9), Puzzle09Point(0, 3, 9),
+            Puzzle09Point(0, 4, 9), Puzzle09Point(0, 5, 4), Puzzle09Point(0, 6, 3), Puzzle09Point(0, 7, 2),
+            Puzzle09Point(0, 8, 1), Puzzle09Point(0, 9, 0),
+
+            Puzzle09Point(1, 0, 3), Puzzle09Point(1, 1, 9), Puzzle09Point(1, 2, 8), Puzzle09Point(1, 3, 7),
+            Puzzle09Point(1, 4, 8), Puzzle09Point(1, 5, 9), Puzzle09Point(1, 6, 4), Puzzle09Point(1, 7, 9),
+            Puzzle09Point(1, 8, 2), Puzzle09Point(1, 9, 1),
+
+            Puzzle09Point(2, 0, 9), Puzzle09Point(2, 1, 8), Puzzle09Point(2, 2, 5), Puzzle09Point(2, 3, 6),
+            Puzzle09Point(2, 4, 7), Puzzle09Point(2, 5, 8), Puzzle09Point(2, 6, 9), Puzzle09Point(2, 7, 8),
+            Puzzle09Point(2, 8, 9), Puzzle09Point(2, 9, 2),
+
+            Puzzle09Point(3, 0, 8), Puzzle09Point(3, 1, 7), Puzzle09Point(3, 2, 6), Puzzle09Point(3, 3, 7),
+            Puzzle09Point(3, 4, 8), Puzzle09Point(3, 5, 9), Puzzle09Point(3, 6, 6), Puzzle09Point(3, 7, 7),
+            Puzzle09Point(3, 8, 8), Puzzle09Point(3, 9, 9),
+
+            Puzzle09Point(4, 0, 9), Puzzle09Point(4, 1, 8), Puzzle09Point(4, 2, 9), Puzzle09Point(4, 3, 9),
+            Puzzle09Point(4, 4, 9), Puzzle09Point(4, 5, 6), Puzzle09Point(4, 6, 5), Puzzle09Point(4, 7, 6),
+            Puzzle09Point(4, 8, 7), Puzzle09Point(4, 9, 8),
         )
         val puzzleSolver = Puzzle09()
 
