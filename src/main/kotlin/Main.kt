@@ -3,7 +3,7 @@ import org.apache.commons.csv.CSVParser
 import org.apache.commons.csv.CSVRecord
 import java.io.File
 
-fun main(args: Array<String>) {
+fun main() {
     println("Hello Advent of Code!")
 
     println("Puzzle 01: " + Puzzle01().solvePuzzle())
@@ -14,6 +14,7 @@ fun main(args: Array<String>) {
     println("Puzzle 06: " + Puzzle06().solvePuzzle())
     println("Puzzle 07: " + Puzzle07().solvePuzzle())
     println("Puzzle 08: " + Puzzle08().solvePuzzle())
+    println("Puzzle 09: " + Puzzle09().solvePuzzle())
 }
 
 fun readCsv(fileName: String, csvFormat: CSVFormat): MutableList<CSVRecord>? {
@@ -25,6 +26,5 @@ fun readCsv(fileName: String, csvFormat: CSVFormat): MutableList<CSVRecord>? {
 
 fun readLines(fileName: String): List<String> {
     val res = {}.javaClass.getResource(fileName)
-    val lines = File(res.file).readLines()
-    return lines
+    return File(res.file).readLines()
 }
