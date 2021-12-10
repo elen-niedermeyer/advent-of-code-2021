@@ -222,4 +222,27 @@ class PuzzleTest {
         assertEquals(1134, result2)
     }
 
+    @Test
+    fun testPuzzle10() {
+        val exampleInput = listOf(
+            "[({(<(())[]>[[{[]{<()<>>",
+            "[(()[<>])]({[<{<<[]>>(",
+            "{([(<{}[<>[]}>{[]{[(<()>",
+            "(((({<>}<{<{<>}{[]{[]{}",
+            "[[<[([]))<([[{}[[()]]]",
+            "[{[{({}]{}}([{[{{{}}([]",
+            "{<[[]]>}<{[{[{[]{()[[[]",
+            "[<(<(<(<{}))><([]([]()",
+            "<{([([[(<>()){}]>(<<{{",
+            "<{([{{}}[<[[[<>{}]]]>[]]"
+        )
+        val puzzleSolver = Puzzle10()
+
+        val result1 = puzzleSolver.getSyntaxErrorScore(exampleInput)
+        assertEquals(26397, result1)
+
+        val result2 = puzzleSolver.getAutocompletionScore(exampleInput)
+        assertEquals(288957, result2)
+    }
+
 }
