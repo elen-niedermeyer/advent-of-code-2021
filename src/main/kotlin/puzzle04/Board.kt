@@ -1,10 +1,12 @@
-class Puzzle04Board(private val numbers: IntArray, private val rowLength: Int) {
-    private val boardElements: List<Puzzle04BoardElement>
+package puzzle04
+
+class Board(private val numbers: IntArray, private val rowLength: Int) {
+    private val boardElements: List<BoardElement>
 
     init {
-        val tempBoardElements = mutableListOf<Puzzle04BoardElement>()
+        val tempBoardElements = mutableListOf<BoardElement>()
         for (i in numbers) {
-            tempBoardElements.add(Puzzle04BoardElement(i, false))
+            tempBoardElements.add(BoardElement(i, false))
         }
         boardElements = tempBoardElements.toList()
     }

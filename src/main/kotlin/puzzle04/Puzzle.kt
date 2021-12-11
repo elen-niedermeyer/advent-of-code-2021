@@ -1,12 +1,25 @@
+package puzzle04
+
 import org.apache.commons.csv.CSVFormat
+import readCsv
 
-class Puzzle04 {
+class Puzzle {
 
-    fun solvePuzzle(): String? {
+    fun solvePart1(): Int? {
+        return readNumberInput()?.let { getFirstWinningBoard(it, readBoardInput()) }
+    }
+
+    fun solvePart2(): Int? {
+        return readNumberInput()?.let { getLastWinningBoard(it, readBoardInput()) }
+    }
+
+    private fun readNumberInput(): IntArray? {
         val numberRecords = readCsv("puzzle04numbers.csv", CSVFormat.DEFAULT)
-        val numbers = numberRecords?.let { IntArray(it[0].size()) { i -> it[0].get(i).toInt() } }
+        return numberRecords?.let { IntArray(it[0].size()) { i -> it[0].get(i).toInt() } }
+    }
 
-        val boards = mutableListOf<Puzzle04Board>()
+    private fun readBoardInput(): List<Board> {
+        val boards = mutableListOf<Board>()
         val boardRecords = readCsv("puzzle04boards.csv", CSVFormat.newFormat(' '))
         if (boardRecords != null) {
             var boardNumbers = mutableListOf<Int>()
@@ -20,30 +33,25 @@ class Puzzle04 {
                     }
                 } else {
                     // one board complete
-                    var newBoard = Puzzle04Board(boardNumbers.toIntArray(), rowLength)
+                    val newBoard = Board(boardNumbers.toIntArray(), rowLength)
                     boards.add(newBoard)
                     // empty numbers
-                    boardNumbers = mutableListOf<Int>()
+                    boardNumbers = mutableListOf()
                 }
             }
         }
 
-        return numbers?.let {
-            "First winning board: " + getFirstWinningBoard(
-                it,
-                boards
-            ) + "; Last winning board: " + getLastWinningBoard(it, boards)
-        }
+        return boards
     }
 
-    fun getFirstWinningBoard(numbers: IntArray, boards: List<Puzzle04Board>): Int? {
+    private fun getFirstWinningBoard(numbers: IntArray, boards: List<Board>): Int? {
         val firstWinningBoard = getWinningBoard(numbers, boards)
         return firstWinningBoard?.let { it.first.calculateFinalScore() * it.second }
     }
 
-    fun getLastWinningBoard(numbers: IntArray, boards: List<Puzzle04Board>): Int? {
-        var mutableBoards = boards.toMutableList()
-        var nextWinningBoard: Pair<Puzzle04Board, Int>? = null
+    private fun getLastWinningBoard(numbers: IntArray, boards: List<Board>): Int? {
+        val mutableBoards = boards.toMutableList()
+        var nextWinningBoard: Pair<Board, Int>? = null
         while (mutableBoards.size > 0) {
             nextWinningBoard = getWinningBoard(numbers, mutableBoards.toList())
             nextWinningBoard?.let { mutableBoards.remove(it.first) }
@@ -53,7 +61,7 @@ class Puzzle04 {
         return nextWinningBoard?.let { it.first.calculateFinalScore() * it.second }
     }
 
-    private fun getWinningBoard(numbers: IntArray, boards: List<Puzzle04Board>): Pair<Puzzle04Board, Int>? {
+    private fun getWinningBoard(numbers: IntArray, boards: List<Board>): Pair<Board, Int>? {
         for (calledNumber in numbers) {
             for (board in boards) {
                 board.mark(calledNumber)

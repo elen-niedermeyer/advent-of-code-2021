@@ -5,103 +5,34 @@ class PuzzleTest {
 
     @Test
     fun testPuzzle01() {
-        val exampleInput = intArrayOf(199, 200, 208, 210, 200, 207, 240, 269, 260, 263)
-        val puzzleSolver = Puzzle01()
+        val puzzleSolver = puzzle01.Puzzle()
 
-        val result = puzzleSolver.countIncreasements(exampleInput)
-        assertEquals(7, result)
-
-        val resultWindows = puzzleSolver.countWindowIncreasements(exampleInput)
-        assertEquals(5, resultWindows)
+        assertEquals(7, puzzleSolver.solvePart1())
+        assertEquals(5, puzzleSolver.solvePart2())
     }
 
     @Test
     fun testPuzzle02() {
-        val exampleInput = arrayOf(
-            Pair("forward", 5),
-            Pair("down", 5),
-            Pair("forward", 8),
-            Pair("up", 3),
-            Pair("down", 8),
-            Pair("forward", 2)
-        )
-        val puzzleSolver = Puzzle02()
+        val puzzleSolver = puzzle02.Puzzle()
 
-        val result = puzzleSolver.getPositionProduct(exampleInput)
-        assertEquals(150, result)
-
-        val resultAim = puzzleSolver.getAimPositionProduct(exampleInput)
-        assertEquals(900, resultAim)
+        assertEquals(150, puzzleSolver.solvePart1())
+        assertEquals(900, puzzleSolver.solvePart2())
     }
 
     @Test
     fun testPuzzle03() {
-        val exampleInput = mutableListOf(
-            "00100",
-            "11110",
-            "10110",
-            "10111",
-            "10101",
-            "01111",
-            "00111",
-            "11100",
-            "10000",
-            "11001",
-            "00010",
-            "01010"
-        )
-        val puzzleSolver = Puzzle03()
+        val puzzleSolver = puzzle03.Puzzle()
 
-        val resultPower = puzzleSolver.getPowerConsumption(exampleInput)
-        assertEquals(198, resultPower)
-
-        val resultLifeSupport = puzzleSolver.getLifeSupportingRate(exampleInput)
-        assertEquals(230, resultLifeSupport)
+        assertEquals(198, puzzleSolver.solvePart1())
+        assertEquals(230, puzzleSolver.solvePart2())
     }
 
     @Test
     fun testPuzzle04() {
-        val exampleNumbers =
-            intArrayOf(7, 4, 9, 5, 11, 17, 23, 2, 0, 14, 21, 24, 10, 16, 13, 6, 15, 25, 12, 22, 18, 20, 8, 19, 3, 26, 1)
-        val exampleBoards = listOf(
-            Puzzle04Board(
-                intArrayOf(
-                    22, 13, 17, 11, 0,
-                    8, 2, 23, 4, 24,
-                    21, 9, 14, 16, 7,
-                    6, 10, 3, 18, 5,
-                    1, 12, 20, 15, 19
-                ),
-                5
-            ),
-            Puzzle04Board(
-                intArrayOf(
-                    3, 15, 0, 2, 22,
-                    9, 18, 13, 17, 5,
-                    19, 8, 7, 25, 23,
-                    20, 11, 10, 24, 4,
-                    14, 21, 16, 12, 6
-                ),
-                5
-            ),
-            Puzzle04Board(
-                intArrayOf(
-                    14, 21, 17, 24, 4,
-                    10, 16, 15, 9, 19,
-                    18, 8, 23, 26, 20,
-                    22, 11, 13, 6, 5,
-                    2, 0, 12, 3, 7
-                ),
-                5
-            )
-        )
-        val puzzleSolver = Puzzle04()
+        val puzzleSolver = puzzle04.Puzzle()
 
-        val winningResult = puzzleSolver.getFirstWinningBoard(exampleNumbers, exampleBoards)
-        assertEquals(4512, winningResult)
-
-        val losingResult = puzzleSolver.getLastWinningBoard(exampleNumbers, exampleBoards)
-        assertEquals(1924, losingResult)
+        assertEquals(4512, puzzleSolver.solvePart1())
+        assertEquals(1924, puzzleSolver.solvePart2())
     }
 
     @Test
@@ -243,6 +174,38 @@ class PuzzleTest {
 
         val result2 = puzzleSolver.getAutocompletionScore(exampleInput)
         assertEquals(288957, result2)
+    }
+
+    @Test
+    fun testPuzzle11() {
+        val plainExampleInput = arrayOf(
+            arrayOf(5, 4, 8, 3, 1, 4, 3, 2, 2, 3),
+            arrayOf(2, 7, 4, 5, 8, 5, 4, 7, 1, 1),
+            arrayOf(5, 2, 6, 4, 5, 5, 6, 1, 7, 3),
+            arrayOf(6, 1, 4, 1, 3, 3, 6, 1, 4, 6),
+            arrayOf(6, 3, 5, 7, 3, 8, 5, 4, 7, 8),
+            arrayOf(4, 1, 6, 7, 5, 2, 4, 6, 4, 5),
+            arrayOf(2, 1, 7, 6, 8, 4, 1, 7, 2, 1),
+            arrayOf(6, 8, 8, 2, 8, 8, 1, 1, 3, 4),
+            arrayOf(4, 8, 4, 6, 8, 4, 8, 5, 5, 4),
+            arrayOf(5, 2, 8, 3, 7, 5, 1, 5, 2, 6)
+        )
+        val exampleInput1 = mutableListOf<Puzzle11Octopus>()
+        val exampleInput2 = mutableListOf<Puzzle11Octopus>()
+        for (i in plainExampleInput.indices) {
+            for (j in plainExampleInput[0].indices) {
+                exampleInput1.add(Puzzle11Octopus(Pair(i, j), plainExampleInput[i][j]))
+                exampleInput2.add(Puzzle11Octopus(Pair(i, j), plainExampleInput[i][j]))
+            }
+        }
+
+        val puzzleSolver = Puzzle11()
+
+        val result1 = puzzleSolver.getFlashesCount(exampleInput1)
+        assertEquals(1656, result1)
+
+        val result2 = puzzleSolver.getIterationWithAllFlashing(exampleInput2)
+        assertEquals(195, result2)
     }
 
 }
