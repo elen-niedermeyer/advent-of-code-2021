@@ -1,12 +1,14 @@
 package puzzle03
 
-class Puzzle {
+import PuzzleSolution
 
-    fun solvePart1(): Int {
+class Puzzle : PuzzleSolution("03") {
+
+    override fun solvePart1(): Int {
         return Part01().solve()
     }
 
-    fun solvePart2(): Int {
+    override fun solvePart2(): Int {
         return Part02().solve()
     }
 

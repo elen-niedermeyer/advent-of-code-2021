@@ -1,17 +1,24 @@
-class Puzzle10 {
+package puzzle10
+
+import PuzzleSolution
+import readLines
+
+class Puzzle : PuzzleSolution("10") {
 
     private val openingCharacters = arrayOf('(', '[', '{', '<')
     private val closingCharacters = arrayOf(')', ']', '}', '>')
     private val errorScores = mapOf(')' to 3, ']' to 57, '}' to 1197, '>' to 25137)
     private val autocompletionPoints = mapOf(')' to 1, ']' to 2, '}' to 3, '>' to 4)
 
-    fun solvePuzzle(): String {
-        val input = readLines("puzzle10.txt")
-        return "Syntax error score: " + getSyntaxErrorScore(input) +
-                "; Autocompletion score: " + getAutocompletionScore(input)
+    override fun solvePart1(): Int {
+        return getSyntaxErrorScore(readLines("puzzle10.txt"))
     }
 
-    fun getSyntaxErrorScore(input: List<String>): Int {
+    override fun solvePart2(): Long {
+        return getAutocompletionScore(readLines("puzzle10.txt"))
+    }
+
+    private fun getSyntaxErrorScore(input: List<String>): Int {
         val illegalCharacters = mutableListOf<Char>()
 
         input.forEach {
@@ -21,10 +28,10 @@ class Puzzle10 {
             }
         }
 
-        return calculateScore(illegalCharacters)
+        return calculateScoreSummative(illegalCharacters)
     }
 
-    fun getAutocompletionScore(input: List<String>): Long {
+    private fun getAutocompletionScore(input: List<String>): Long {
         val lineScores = mutableListOf<Long>()
 
         input.forEach {
@@ -80,11 +87,10 @@ class Puzzle10 {
     }
 
 
-    private fun calculateScore(illegalCharacters: List<Char>): Int {
+    private fun calculateScoreSummative(illegalCharacters: List<Char>): Int {
         var sum = 0
         illegalCharacters.forEach { sum += errorScores[it]!! }
         return sum
     }
-
 
 }

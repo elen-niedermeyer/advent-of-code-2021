@@ -1,4 +1,3 @@
-import puzzle04.Puzzle
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.apache.commons.csv.CSVRecord
@@ -6,51 +5,27 @@ import java.io.File
 
 fun main() {
     println("Hello Advent of Code!")
-    println("Part\t Result Value\t Time in ms")
 
-    var startTime = System.currentTimeMillis()
-    var resultInt = puzzle01.Puzzle().solvePart1()
-    var endTime = System.currentTimeMillis()
-    println("01-01\t ${resultInt}\t\t\t ${endTime-startTime}")
-    startTime = System.currentTimeMillis()
-    resultInt = puzzle01.Puzzle().solvePart2()
-    endTime = System.currentTimeMillis()
-    println("01-02\t ${resultInt}\t\t\t ${endTime-startTime}")
+    val solutions = arrayOf(
+        puzzle01.Puzzle(),
+        puzzle02.Puzzle(),
+        puzzle03.Puzzle(),
+        puzzle04.Puzzle(),
+        puzzle05.Puzzle(),
+        puzzle06.Puzzle(),
+        puzzle07.Puzzle(),
+        puzzle08.Puzzle(),
+        puzzle09.Puzzle(),
+        puzzle10.Puzzle(),
+        puzzle11.Puzzle(),
+        puzzle12.Puzzle(),
+    )
 
-    startTime = System.currentTimeMillis()
-    var resultIntNullable = puzzle02.Puzzle().solvePart1()
-    endTime = System.currentTimeMillis()
-    println("02-01\t ${resultIntNullable}\t\t ${endTime-startTime}")
-    startTime = System.currentTimeMillis()
-    resultIntNullable = puzzle02.Puzzle().solvePart2()
-    endTime = System.currentTimeMillis()
-    println("02-02\t ${resultIntNullable}\t\t ${endTime-startTime}")
+    println("Part\t Result")
 
-    startTime = System.currentTimeMillis()
-    resultInt = puzzle03.Puzzle().solvePart1()
-    endTime = System.currentTimeMillis()
-    println("03-01\t ${resultInt}\t\t ${endTime-startTime}")
-    startTime = System.currentTimeMillis()
-    resultInt = puzzle03.Puzzle().solvePart2()
-    endTime = System.currentTimeMillis()
-    println("03-02\t ${resultInt}\t\t\t ${endTime-startTime}")
-
-    startTime = System.currentTimeMillis()
-    resultIntNullable = puzzle04.Puzzle().solvePart1()
-    endTime = System.currentTimeMillis()
-    println("04-01\t ${resultIntNullable}\t\t\t ${endTime-startTime}")
-    startTime = System.currentTimeMillis()
-    resultIntNullable = puzzle04.Puzzle().solvePart2()
-    endTime = System.currentTimeMillis()
-    println("04-02\t ${resultIntNullable}\t\t\t ${endTime-startTime}")
-
-    println("Puzzle 05: " + Puzzle05().solvePuzzle())
-    println("Puzzle 06: " + Puzzle06().solvePuzzle())
-    println("Puzzle 07: " + Puzzle07().solvePuzzle())
-    println("Puzzle 08: " + Puzzle08().solvePuzzle())
-    println("Puzzle 09: " + Puzzle09().solvePuzzle())
-    println("Puzzle 10: " + Puzzle10().solvePuzzle())
-    println("Puzzle 11: " + Puzzle11().solvePuzzle())
+    for (solution in solutions) {
+        solution.print()
+    }
 }
 
 fun readCsv(fileName: String, csvFormat: CSVFormat): MutableList<CSVRecord>? {

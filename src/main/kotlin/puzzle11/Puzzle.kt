@@ -1,21 +1,31 @@
-class Puzzle11 {
+package puzzle11
 
-    fun solvePuzzle(): String {
+import PuzzleSolution
+import readLines
+
+class Puzzle : PuzzleSolution("11") {
+
+    override fun solvePart1(): Int {
+        return getFlashesCount(readInput())
+    }
+
+    override fun solvePart2(): Int {
+        return getIterationWithAllFlashing(readInput())
+    }
+
+    private fun readInput(): MutableList<Octopus> {
         val textLines = readLines("puzzle11.txt")
-        val input1 = mutableListOf<Puzzle11Octopus>()
-        val input2 = mutableListOf<Puzzle11Octopus>()
+        val input = mutableListOf<Octopus>()
         for (i in textLines.indices) {
             for (j in textLines[0].indices) {
-                input1.add(Puzzle11Octopus(Pair(i, j), textLines[i][j].digitToInt()))
-                input2.add(Puzzle11Octopus(Pair(i, j), textLines[i][j].digitToInt()))
+                input.add(Octopus(Pair(i, j), textLines[i][j].digitToInt()))
             }
         }
 
-        return "Flashes after 100 iterations: " + getFlashesCount(input1) +
-                "; All flashing in iteration: " + getIterationWithAllFlashing(input2)
+        return input
     }
 
-    fun getFlashesCount(octopuses: MutableList<Puzzle11Octopus>): Int {
+    private fun getFlashesCount(octopuses: MutableList<Octopus>): Int {
         var flashesCount = 0
 
         for (step in 0..99) {
@@ -38,7 +48,7 @@ class Puzzle11 {
         return flashesCount
     }
 
-    fun getIterationWithAllFlashing(octopuses: MutableList<Puzzle11Octopus>): Int {
+    private fun getIterationWithAllFlashing(octopuses: MutableList<Octopus>): Int {
         var iterationCount = 0
 
         while (octopuses.count { it.energyLevel == 0 } != octopuses.size) {
@@ -60,7 +70,7 @@ class Puzzle11 {
         return iterationCount
     }
 
-    private fun flashOctopus(octopuses: MutableList<Puzzle11Octopus>, flashingOctopus: Puzzle11Octopus) {
+    private fun flashOctopus(octopuses: MutableList<Octopus>, flashingOctopus: Octopus) {
         octopuses.find { it.position.first == flashingOctopus.position.first - 1 && it.position.second == flashingOctopus.position.second - 1 }
             ?.increaseEnergyLevelIfNotFlashed()
         octopuses.find { it.position.first == flashingOctopus.position.first - 1 && it.position.second == flashingOctopus.position.second }

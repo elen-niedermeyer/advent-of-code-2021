@@ -1,4 +1,6 @@
-class Puzzle11Octopus(val position: Pair<Int, Int>, var energyLevel: Int) {
+package puzzle11
+
+class Octopus(val position: Pair<Int, Int>, var energyLevel: Int) {
 
     fun increaseEnergyLevel() {
         energyLevel++

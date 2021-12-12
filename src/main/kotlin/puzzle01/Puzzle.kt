@@ -1,16 +1,17 @@
 package puzzle01
 
+import PuzzleSolution
 import readLines
 
-class Puzzle {
+class Puzzle : PuzzleSolution("01") {
 
-    fun solvePart1(): Int {
+    override fun solvePart1(): Int {
         val records = readLines("puzzle01.txt")
         val input = records.let { IntArray(it.size) { i -> it[i].toInt() } }
         return countIncreasements(input)
     }
 
-    fun solvePart2(): Int {
+    override fun solvePart2(): Int {
         val records = readLines("puzzle01.txt")
         val input = records.let { IntArray(it.size) { i -> it[i].toInt() } }
         return countWindowIncreasements(input)

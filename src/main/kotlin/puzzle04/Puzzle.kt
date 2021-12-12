@@ -1,15 +1,16 @@
 package puzzle04
 
+import PuzzleSolution
 import org.apache.commons.csv.CSVFormat
 import readCsv
 
-class Puzzle {
+class Puzzle : PuzzleSolution("04") {
 
-    fun solvePart1(): Int? {
+    override fun solvePart1(): Int? {
         return readNumberInput()?.let { getFirstWinningBoard(it, readBoardInput()) }
     }
 
-    fun solvePart2(): Int? {
+    override fun solvePart2(): Int? {
         return readNumberInput()?.let { getLastWinningBoard(it, readBoardInput()) }
     }
 

@@ -1,26 +1,24 @@
+package puzzle08
+
 import org.apache.commons.csv.CSVFormat
+import readCsv
 
-class Puzzle08 {
+class Part02 {
 
-    fun solvePuzzle(): String? {
+    fun solve(): Int? {
         val records = readCsv("puzzle08.csv", CSVFormat.newFormat('|'))
         val signals = records?.let { List(it.size) { i -> it[i].get(0).split(' ') } }
         val segmentOutput = records?.let { List(it.size) { i -> it[i].get(1).split(' ') } }
         return segmentOutput?.let {
-            "Unique Segments: " + countUniqueSequentNumbers(it) + "; Outputs: " + signals?.let { it1 ->
+            signals?.let {
                 decodeOutputValues(
-                    it1, segmentOutput
+                    it, segmentOutput
                 )
             }
         }
     }
 
-    fun countUniqueSequentNumbers(segmentOutput: List<List<String>>): Int {
-        val flattenArray = segmentOutput.flatten()
-        return flattenArray.count { it.length == 2 || it.length == 3 || it.length == 4 || it.length == 7 }
-    }
-
-    fun decodeOutputValues(signals: List<List<String>>, segmentOutput: List<List<String>>): Int {
+    private fun decodeOutputValues(signals: List<List<String>>, segmentOutput: List<List<String>>): Int {
         var sum = 0
         for (i in signals.indices) {
             val signalMap = mapSignals(signals[i])
@@ -88,8 +86,7 @@ class Puzzle08 {
         }
 
         // reverse map for returning
-        val x = mapping.entries.associateBy({ it.value }) { it.key }
-        return x
+        return mapping.entries.associateBy({ it.value }) { it.key }
     }
 
     private fun decodeOutput(outputSignals: List<String>, signalMap: Map<String, String>): Int {
