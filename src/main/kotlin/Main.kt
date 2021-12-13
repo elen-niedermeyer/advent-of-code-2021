@@ -19,6 +19,7 @@ fun main() {
         puzzle10.Puzzle(),
         puzzle11.Puzzle(),
         puzzle12.Puzzle(),
+        puzzle13.Puzzle()
     )
 
     println("Part\t Result")
