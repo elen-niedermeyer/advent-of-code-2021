@@ -107,4 +107,12 @@ class PuzzleTest {
         assertEquals(null, puzzleSolver.solvePart2())
     }
 
+    @Test
+    fun testPuzzle14() {
+        val puzzleSolver = puzzle14.Puzzle()
+
+        assertEquals(1588, puzzleSolver.solvePart1())
+        assertEquals(2188189693529, puzzleSolver.solvePart2())
+    }
+
 }

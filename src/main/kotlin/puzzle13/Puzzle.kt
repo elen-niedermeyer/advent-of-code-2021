@@ -4,7 +4,6 @@ import PuzzleSolution
 import org.apache.commons.csv.CSVFormat
 import readCsv
 import readLines
-import java.util.*
 
 class Puzzle : PuzzleSolution("13") {
 
@@ -17,10 +16,10 @@ class Puzzle : PuzzleSolution("13") {
         readFoldInput().forEach { points = fold(points!!, it) }
         points?.let {
             val gridSize = getGridSize(points!!)
-            val grid = Array(gridSize.second + 1) { Array(gridSize.first + 1) { '.' } }
-            points!!.forEach { grid[it.y][it.x] = '#' }
-            var results = mutableListOf<String>()
-            grid.forEach { results.add(it.joinToString(" ")) }
+            val grid = Array(gridSize.second + 1) { Array(gridSize.first + 1) { ' ' } }
+            points!!.forEach { grid[it.y][it.x] = '\u2593' }
+            val results = mutableListOf<String>()
+            grid.forEach { results.add(it.joinToString("")) }
             println(results.joinToString("\n"))
         }
         return null
@@ -35,7 +34,7 @@ class Puzzle : PuzzleSolution("13") {
         val textLines = readLines("puzzle13folds.txt")
         val input = mutableListOf<Pair<String, Int>>()
         textLines.forEach {
-            val match = "[x,y]{1}=\\d+".toRegex().find(it)!!
+            val match = "[x,y]=\\d+".toRegex().find(it)!!
             val parts = match.value.split('=')
             input.add(Pair(parts[0], parts[1].toInt()))
         }
