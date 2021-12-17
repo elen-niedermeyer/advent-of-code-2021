@@ -1,3 +1,5 @@
+import io.mockk.every
+import io.mockk.mockk
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -122,5 +124,45 @@ class PuzzleTest {
         assertEquals(40, puzzleSolver.solvePart1())
         assertEquals(315, puzzleSolver.solvePart2())
     }
+
+    @Test
+    fun testPuzzle16() {
+
+        val puzzleSolver = mockk<puzzle16.Puzzle>()
+        every { puzzleSolver["readInput"]() } returnsMany listOf(
+            readLines("puzzle16-1-1.txt")[0],
+            readLines("puzzle16-1-2.txt")[0],
+            readLines("puzzle16-1-3.txt")[0],
+            readLines("puzzle16-1-4.txt")[0],
+            readLines("puzzle16-2-1.txt")[0],
+            readLines("puzzle16-2-2.txt")[0],
+            readLines("puzzle16-2-3.txt")[0],
+            readLines("puzzle16-2-4.txt")[0],
+            readLines("puzzle16-2-5.txt")[0],
+            readLines("puzzle16-2-6.txt")[0],
+            readLines("puzzle16-2-7.txt")[0],
+            readLines("puzzle16-2-8.txt")[0],
+            readLines("puzzle16-2-9.txt")[0],
+        )
+        every { puzzleSolver.solvePart1() } answers { callOriginal() }
+        every { puzzleSolver.solvePart2() } answers { callOriginal() }
+        every { puzzleSolver["getInput"]() } answers { callOriginal() }
+        every { puzzleSolver["convertToBinary"](any<String>()) } answers { callOriginal() }
+
+        assertEquals(16, puzzleSolver.solvePart1())
+        assertEquals(12, puzzleSolver.solvePart1())
+        assertEquals(23, puzzleSolver.solvePart1())
+        assertEquals(31, puzzleSolver.solvePart1())
+        assertEquals(3, puzzleSolver.solvePart2())
+        assertEquals(54, puzzleSolver.solvePart2())
+        assertEquals(7, puzzleSolver.solvePart2())
+        assertEquals(9, puzzleSolver.solvePart2())
+        assertEquals(1, puzzleSolver.solvePart2())
+        assertEquals(0, puzzleSolver.solvePart2())
+        assertEquals(0, puzzleSolver.solvePart2())
+        assertEquals(1, puzzleSolver.solvePart2())
+        assertEquals(2021, puzzleSolver.solvePart2())
+    }
+
 
 }

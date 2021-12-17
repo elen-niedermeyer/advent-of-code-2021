@@ -16,6 +16,7 @@ dependencies {
     implementation("org.apache.commons:commons-csv:1.5")
     implementation("org.testng:testng:7.1.0")
     testImplementation(kotlin("test"))
+    testImplementation("io.mockk:mockk:1.12.1")
 }
 
 tasks.test {
