@@ -11,11 +11,11 @@ class Puzzle : PuzzleSolution("18") {
 
         for (i in 1 until input.size) {
             currentNumber = add(currentNumber, input[i])
-            reduce(currentNumber as MutableList<SnailfishNumber>)
+            reduce(currentNumber)
             //println("Step result: " + currentNumber.last())
         }
 
-        return currentNumber.last().calculateMagnitude()
+        return currentNumber.calculateMagnitude()
     }
 
     override fun solvePart2(): Int {
@@ -27,8 +27,8 @@ class Puzzle : PuzzleSolution("18") {
                 val inputCopy = readInput()
                 // calculate sum
                 val currentNumber = add(inputCopy[i], inputCopy[j])
-                reduce(currentNumber as MutableList<SnailfishNumber>)
-                val currentMagnitude = currentNumber.last().calculateMagnitude()
+                reduce(currentNumber)
+                val currentMagnitude = currentNumber.calculateMagnitude()
                 if (currentMagnitude > highestMagnitude) {
                     highestMagnitude = currentMagnitude
                 }
@@ -38,32 +38,24 @@ class Puzzle : PuzzleSolution("18") {
         return highestMagnitude
     }
 
-    private fun readInput(): List<List<SnailfishNumber>> {
+    private fun readInput(): List<SnailfishNumber> {
         val textLines = readLines("puzzle18.txt")
-        val allNumbers = mutableListOf<List<SnailfishNumber>>()
-        textLines.forEach { allNumbers.add(parseNumberInput(it) as List<SnailfishNumber>) }
+        val allNumbers = mutableListOf<SnailfishNumber>()
+        textLines.forEach { allNumbers.add(parseNumberInput(it) as SnailfishNumber) }
         return allNumbers
     }
 
-    private fun parseNumberInput(number: String): List<Any> {
+    private fun parseNumberInput(number: String): Any {
         if (!number.contains(',')) {
-            return listOf(number.toInt())
+            return number.toInt()
         }
 
         val commaIndex = findCommaBetweenChildren(number)
-        val list = mutableListOf<SnailfishNumber>()
 
         val leftChildren = parseNumberInput(number.substring(1, commaIndex))
-        if (leftChildren.last() is SnailfishNumber) {
-            list.addAll(leftChildren as List<SnailfishNumber>)
-        }
         val rightChildren = parseNumberInput(number.substring(commaIndex + 1, number.length - 1))
-        if (rightChildren.last() is SnailfishNumber) {
-            list.addAll(rightChildren as List<SnailfishNumber>)
-        }
-        list.add(SnailfishNumber(leftChildren.last(), rightChildren.last()))
 
-        return list
+        return SnailfishNumber(leftChildren, rightChildren)
     }
 
     private fun findCommaBetweenChildren(number: String, openingChar: Char = '[', closingChar: Char = ']'): Int {
@@ -95,29 +87,23 @@ class Puzzle : PuzzleSolution("18") {
         return 0
     }
 
-    private fun add(value1: List<SnailfishNumber>, value2: List<SnailfishNumber>): List<SnailfishNumber> {
-        val number = mutableListOf<SnailfishNumber>()
-        number.addAll(value1)
-        number.addAll(value2)
-        number.add(SnailfishNumber(value1.last(), value2.last()))
-        return number
+    private fun add(value1: SnailfishNumber, value2: SnailfishNumber): SnailfishNumber {
+        return SnailfishNumber(value1, value2)
     }
 
-    private fun reduce(input: MutableList<SnailfishNumber>) {
+    private fun reduce(input: SnailfishNumber) {
         var toSplit = true
         while (toSplit) {
             explodeAll(input)
-            val newSplittedNumber = input.last().trySplit()
-            if (newSplittedNumber != null) {
-                input.add(input.size - 2, newSplittedNumber)
-            } else {
+            val newSplittedNumber = input.trySplit()
+            if (newSplittedNumber == null) {
                 toSplit = false
             }
         }
     }
 
-    private fun explodeAll(input: MutableList<SnailfishNumber>) {
-        var numberToExplode = input.last().findChildToExplode()
+    private fun explodeAll(input: SnailfishNumber) {
+        var numberToExplode = input.findChildToExplode()
 
         while (numberToExplode != null) {
             val isLeftChild = numberToExplode.parent!!.leftChild == numberToExplode
@@ -176,9 +162,8 @@ class Puzzle : PuzzleSolution("18") {
             } else {
                 numberToExplode.parent!!.rightChild = 0
             }
-            input.remove(numberToExplode)
 
-            numberToExplode = input.last().findChildToExplode()
+            numberToExplode = input.findChildToExplode()
         }
     }
 
