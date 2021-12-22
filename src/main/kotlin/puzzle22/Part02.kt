@@ -32,9 +32,9 @@ class Part02 {
     private fun getIntersectedCubes(cubes: List<Cube>, newCube: Cube): List<Cube> {
         val newCubes = mutableListOf<Cube>()
         cubes.forEach {
-            if (it.minX < newCube.maxX && it.maxX > newCube.minX
-                && it.minY < newCube.maxY && it.maxY > newCube.minY
-                && it.minZ < newCube.maxZ && it.maxZ > newCube.minZ
+            if (it.minX <= newCube.maxX && it.maxX >= newCube.minX
+                && it.minY <= newCube.maxY && it.maxY >= newCube.minY
+                && it.minZ <= newCube.maxZ && it.maxZ >= newCube.minZ
             ) {
                 // has intersection
                 newCubes.add(
