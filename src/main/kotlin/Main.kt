@@ -26,7 +26,8 @@ fun main() {
         puzzle17.Puzzle(),
         puzzle18.Puzzle(),
         puzzle20.Puzzle(),
-        puzzle21.Puzzle()
+        puzzle21.Puzzle(),
+        puzzle22.Puzzle()
     )
 
     println("Part\t Result")

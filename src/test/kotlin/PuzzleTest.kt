@@ -196,4 +196,23 @@ class PuzzleTest {
         assertEquals(444356092776315, puzzleSolver.solvePart2())
     }
 
+    @Test
+    fun testPuzzle22() {
+
+        val puzzleSolver = mockk<puzzle22.Puzzle>()
+        every { puzzleSolver["readInput"]() } returnsMany listOf(
+            readLines("puzzle22-1.txt"),
+            readLines("puzzle22-2.txt"),
+            readLines("puzzle22-3.txt"),
+            readLines("puzzle22-3.txt"),
+        )
+        every { puzzleSolver.solvePart1() } answers { callOriginal() }
+        every { puzzleSolver.solvePart2() } answers { callOriginal() }
+
+        assertEquals(39, puzzleSolver.solvePart1())
+        assertEquals(590784, puzzleSolver.solvePart1())
+        assertEquals(474140, puzzleSolver.solvePart1())
+        assertEquals(2758514936282235, puzzleSolver.solvePart2())
+    }
+
 }
